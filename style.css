@@ -200,6 +200,18 @@ a
 	text-decoration: underline;
 }
 
+/* overlaid divs with p5 in them */
+.overlay
+{
+	position:absolute;
+	width: 400px;
+	height: 400px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+}
+
 /* @keyframes scrolldown{
 	0%{
 		opacity: 1;
