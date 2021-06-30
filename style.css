@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'quickensregular';
+    src: url('quickens-webfont.woff2') format('woff2'),
+         url('quickens-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 /* general stuff */
 
 *{
@@ -62,6 +70,7 @@ a{
 .scrolldown1::before,
 .scrolldown1::after{
 	content: "CLICK TO BEGIN";
+	font-family: "quickensregular", sans-serif;
 	font-size: 12pt;
 	position: absolute;
 	top: 1%;
@@ -164,7 +173,7 @@ body
 
 p
 {
-	font-family: sans-serif;
+	font-family: "quickensregular",sans-serif;
 }
 
 .footer
