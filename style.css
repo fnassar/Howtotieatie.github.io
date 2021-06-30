@@ -74,7 +74,6 @@ a{
 #page1{
 	position: relative;
 	background-color: black;
-	display: none;
 }
 
 #vid1{
@@ -97,7 +96,6 @@ a{
 #page2{
 	position: relative;
 	background-color: black;
-	display: none;
 } 
 
 #vid2{
@@ -121,7 +119,6 @@ a{
 #page3{
 	position: relative;
 	background-color: black;
-	display: none;
 } 
 
 #vid3{
@@ -144,7 +141,6 @@ a{
 #closing-screen{
 	position: relative;
 	background-color: white;
-	display: none;
 }
 
 .text-container{
@@ -156,6 +152,37 @@ a{
 	text-align: center;
 }
 
+body
+{
+	/* overflow: hidden; */
+}
+
+.credits
+{
+	padding: 1.4em;
+}
+
+p
+{
+	font-family: sans-serif;
+}
+
+.footer
+{
+	position: absolute;
+	bottom: 0%;
+	left: 0%;
+	background-color: black;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding: 1.5em;
+}
+
+.linky
+{
+	color: white;
+}
 
 /* @keyframes scrolldown{
 	0%{

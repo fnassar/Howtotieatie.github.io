@@ -30,5 +30,8 @@ video3.addEventListener("ended",()=>{
 
 // adding jQuery auto-scroll when video ends 
 function myScrollFunction() {
-	window.scrollTo(0, 1507.2);
+	window.scrollBy({
+		top: window.innerHeight,
+		behavior: 'smooth'
+	  });
 }
