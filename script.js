@@ -35,3 +35,18 @@ function myScrollFunction() {
 		behavior: 'smooth'
 	  });
 }
+
+video1 = document.getElementById("video1");
+video2 = document.getElementById("video2");
+video3 = document.getElementById("video3");
+
+
+//script to manage the apparition of ps sketches 
+video1.addEventListener("timeupdate", vid1sketches);
+video2.addEventListener("timeupdate", vid2sketches);
+video3.addEventListener("timeupdate", vid3sketches);
+
+function vid1sketches()
+{
+	
+}
