@@ -15,4 +15,4 @@ We then split the work such that Hanaan worked on the website, Juan worked on th
 <img src="mkp.jpg" width="400"/>
 
 ### Reflection
-Overall, we are incredibly satisfied with our final result. We were able to implement the intended aesthetic with regard to the web layout and the video edits. We are also really pleased with the look and feel of our footage. 
+Overall, we are incredibly satisfied with our final result. We were able to implement the intended aesthetic with regard to the web layout and the video edits. We are also really pleased with the look and feel of our footage. Maybe if we had more time, we would be able to refine certain elements better, but we are still very happy with what have now.
