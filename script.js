@@ -44,7 +44,7 @@ video3 = document.getElementById("video3");
 
 //script to manage the apparition of ps sketches 
 video1.addEventListener("timeupdate", vid1sketches);
-// video2.addEventListener("timeupdate", vid2sketches);
+video2.addEventListener("timeupdate", vid2sketches);
 // video3.addEventListener("timeupdate", vid3sketches);
 
 function nothing() { }
@@ -75,6 +75,30 @@ function vid1sketches() {
 		div2.setAttribute("id", "div2")
 		new p5(sketch2, 'div2')
 	}
+}
+
+function vid2sketches() {
+	if (video2.currentTime > 7 && !window.sketches[2]) {
+		video2.pause();
+		window.sketches[2] = true;
+		var div3 = document.createElement("div");
+		div3.classList.add("overlay");
+		var sec2 = document.getElementById("page2");
+		sec2.appendChild(div3);
+		div3.setAttribute("id", "div3")
+		new p5(sketch3, 'div3')
+	}
+	if (video2.currentTime > 34 && !window.sketches[3]) {
+		video2.pause();
+		window.sketches[3] = true;
+		var div4 = document.createElement("div");
+		div4.classList.add("overlay");
+		var sec2 = document.getElementById("page2");
+		sec2.appendChild(div4);
+		div4.setAttribute("id", "div4")
+		new p5(sketch4, 'div4')
+	}
+
 }
 
 function sketch1(p) {
@@ -192,7 +216,7 @@ function sketch1(p) {
 
 function sketch2(p) {
 
-	p.setup = function() {
+	p.setup = function () {
 		p.createCanvas(400, 400);
 		assignValue();
 	}
@@ -207,7 +231,7 @@ function sketch2(p) {
 		assignValue = noop;
 	}
 
-	p.draw = function() {
+	p.draw = function () {
 		p.background(220);
 		p.noStroke();
 		p.fill(255);
@@ -244,7 +268,7 @@ function sketch2(p) {
 		p.endShape(p.CLOSE);
 	}
 
-	p.mouseDragged = function() {
+	p.mouseDragged = function () {
 		var mouseAngleToBigTie = Math.atan((p.mouseY - 100) / (p.mouseX - 250));
 		if (mouseAngleToBigTie < 0 && p.mouseY > 100) {
 			mouseAngleToBigTie = Math.PI + mouseAngleToBigTie;
@@ -275,6 +299,314 @@ function sketch2(p) {
 			coord = smalltiecoords[i];
 			var polar = coord[1] * Math.PI / 180;
 			p.vertex(150 + coord[0] * Math.cos(angle + polar), 100 + coord[0] * Math.sin(angle + polar));
+		}
+		p.endShape(p.CLOSE);
+	}
+	function shirt() {
+		p.beginShape();
+		p.vertex(0, 100);
+		p.vertex(162, 100);
+		p.vertex(162, 70);
+		p.vertex(190, 70);
+		p.vertex(190, 100);
+		p.vertex(210, 100);
+		p.vertex(210, 70);
+		p.vertex(242, 70);
+		p.vertex(242, 100);
+		p.vertex(400, 100);
+		p.vertex(400, 190);
+		p.vertex(300, 190);
+		p.vertex(300, 400);
+		p.vertex(100, 400);
+		p.vertex(100, 190);
+		p.vertex(0, 190);
+
+		p.endShape(p.CLOSE);
+		p.stroke(220);
+		p.line(200, 100, 200, 400);
+
+	}
+
+}
+
+function sketch3(p) {
+
+	p.setup = function () {
+		p.createCanvas(400, 400);
+		assignValue();
+	}
+
+	function noop() {
+
+	}
+
+	function assignValue() {
+		window.horizontal = 40;
+		window.currenttietip = [0, 0];
+		assignValue = noop;
+	}
+	p.draw = function () {
+		p.background(220);
+		p.noStroke();
+		p.fill(255);
+		shirt();
+		p.stroke(180);
+		p.fill(255);
+		//objectives
+		bigtie(190, false);
+		p.stroke(220)
+		p.fill(0);
+		//small tie is static, called between two layers of big tie
+
+		bigtie(window.horizontal, true);
+		//check if win
+		if (Math.abs(window.horizontal - 190) < 10) {
+			var toDelete = document.getElementById("div3");
+			video2.play()
+			toDelete.remove();
+		}
+	}
+
+
+	bigtiecoords = [[12, -90], [227, -5], [250, 0], [227, 5], [12, 90]];
+	bigtiepart1 = [[12, -90], [227, -5], [250, 0], [227, 5], [12, 90]]
+	smalltiecoords = [[12, -90], [156, -4.5], [170, 0], [156, 4.5], [12, 90]];
+
+	p.mouseDragged = function () {
+		if (Math.abs(p.mouseX - window.currenttietip[0]) < 20 && Math.abs(p.mouseY - window.currenttietip[1]) < 20 && horizontal >= 25) {
+			// this equation was the result of a lot of hard trigonometry i dont want to repeat ever
+			window.horizontal = (p.mouseX - 38.71) / 1.768;
+		}
+	}
+
+	function bigtie(horizontal, active) {
+		angle = 2.38;
+		tielength = 280;
+		//calculate base points
+		coord = bigtiecoords[0];
+		var polar = coord[1] * Math.PI / 180;
+		base1x = 230 + coord[0] * Math.cos(angle + polar);
+		base1y = 100 + coord[0] * Math.sin(angle + polar);
+		coord = bigtiecoords[4];
+		polar = coord[1] * Math.PI / 180;
+		base2x = 230 + coord[0] * Math.cos(angle + polar);
+		base2y = 100 + coord[0] * Math.sin(angle + polar);
+
+		// calculate the points of fold based on horizontal value
+		corner1 = [tielength - 13 - horizontal, -3];
+		corner1polar = corner1[1] * Math.PI / 180;
+		corner1x = base1x + corner1[0] * Math.cos(angle + corner1polar);
+		corner1y = base1y + corner1[0] * Math.sin(angle + corner1polar);
+		corner2 = [tielength - 13 - horizontal, 3];
+		corner2polar = corner2[1] * Math.PI / 180;
+		corner2x = base2x + corner2[0] * Math.cos(angle + corner2polar);
+		corner2y = base2y + corner2[0] * Math.sin(angle + corner2polar);
+
+		// part 2 - from fold to the right
+		p.beginShape();
+		corner3polar = -3 * Math.PI / 180;
+		p.vertex(corner1x, corner1y);
+		p.vertex(corner2x, corner2y);
+		corner3x = corner2x + horizontal * Math.cos(corner3polar);
+		corner3y = corner2y + horizontal * Math.sin(corner3polar);
+		corner4x = corner3x;
+		corner4y = corner1y - horizontal * Math.sin(corner3polar);
+		p.vertex(corner3x, corner3y);
+		p.vertex(corner3x + 25, (corner3y + corner4y) / 2);
+		p.vertex(corner4x, corner4y);
+
+		p.endShape(p.CLOSE);
+
+
+		smalltie(1.2);
+
+		// part 1 of the tie - fron neck to fold
+
+		p.beginShape();
+		p.vertex(base1x, base1y);
+		p.vertex(corner1x, corner1y);
+		p.vertex(corner2x, corner2y);
+		p.vertex(base2x, base2y)
+		p.endShape(p.CLOSE);
+
+		if (active) {
+			window.currenttietip = [corner3x + 25, (corner3y + corner4y) / 2];
+		}
+	}
+
+	function smalltie(angle) {
+		p.beginShape();
+		for (var i = 0; i < 5; i++) {
+			coord = smalltiecoords[i];
+			var polar = coord[1] * Math.PI / 180;
+			p.vertex(180 + coord[0] * Math.cos(angle + polar), 100 + coord[0] * Math.sin(angle + polar));
+		}
+		p.endShape(p.CLOSE);
+	}
+	function shirt() {
+		p.beginShape();
+		p.vertex(0, 100);
+		p.vertex(162, 100);
+		p.vertex(162, 70);
+		p.vertex(190, 70);
+		p.vertex(190, 100);
+		p.vertex(210, 100);
+		p.vertex(210, 70);
+		p.vertex(242, 70);
+		p.vertex(242, 100);
+		p.vertex(400, 100);
+		p.vertex(400, 190);
+		p.vertex(300, 190);
+		p.vertex(300, 400);
+		p.vertex(100, 400);
+		p.vertex(100, 190);
+		p.vertex(0, 190);
+
+		p.endShape(p.CLOSE);
+		p.stroke(220);
+		p.line(200, 100, 200, 400);
+
+	}
+
+}
+
+function sketch4(p) {
+
+	p.setup = function () {
+		p.createCanvas(400, 400);
+		assignValue();
+	}
+
+	function noop() {
+
+	}
+
+	function assignValue() {
+		window.flip = 25;
+		window.currenttietip = [0, 0];
+		assignValue = noop;
+	}
+
+	p.draw = function () {
+		p.background(220);
+		p.noStroke();
+		p.fill(255);
+		shirt();
+		p.stroke(180);
+		p.fill(255);
+		//objectives
+		bigtie(340, false);
+		p.stroke(220)
+		p.fill(0);
+		//small tie is static, called between two layers of big tie
+
+		bigtie(window.flip, true);
+		//check if win
+		if (Math.abs(window.flip - 340) < 5) {
+			var toDelete = document.getElementById("div4");
+			video2.play()
+			toDelete.remove();
+		}
+	}
+
+
+	bigtiecoords = [[12, -90], [227, -5], [250, 0], [227, 5], [12, 90]];
+	bigtiepart1 = [[12, -90], [227, -5], [250, 0], [227, 5], [12, 90]]
+	smalltiecoords = [[12, -90], [156, -4.5], [170, 0], [156, 4.5], [12, 90]];
+
+	p.mouseDragged = function () {
+		if (Math.abs(p.mouseX - window.currenttietip[0]) < 20 && Math.abs(p.mouseY - window.currenttietip[1]) < 20) {
+			window.flip = 364 - p.mouseX;
+		}
+	}
+
+	function bigtie(flip, active) {
+		//this code is inherited from tie3.js, but is locked at the crossed position
+
+
+
+
+		angle = 2.38;
+		tielength = 280;
+		horizontal = 196;
+		//calculate base points
+		coord = bigtiecoords[0];
+		var polar = coord[1] * Math.PI / 180;
+		base1x = 230 + coord[0] * Math.cos(angle + polar);
+		base1y = 100 + coord[0] * Math.sin(angle + polar);
+		coord = bigtiecoords[4];
+		polar = coord[1] * Math.PI / 180;
+		base2x = 230 + coord[0] * Math.cos(angle + polar);
+		base2y = 100 + coord[0] * Math.sin(angle + polar);
+
+		// calculate the points of fold based on horizontal value
+		corner1 = [tielength - 13 - horizontal, -3];
+		corner1polar = corner1[1] * Math.PI / 180;
+		corner1x = base1x + corner1[0] * Math.cos(angle + corner1polar);
+		corner1y = base1y + corner1[0] * Math.sin(angle + corner1polar);
+		corner2 = [tielength - 13 - horizontal, 3];
+		corner2polar = corner2[1] * Math.PI / 180;
+		corner2x = base2x + corner2[0] * Math.cos(angle + corner2polar);
+		corner2y = base2y + corner2[0] * Math.sin(angle + corner2polar);
+		corner3polar = -3 * Math.PI / 180;
+		corner3x = corner2x + horizontal * Math.cos(corner3polar);
+		corner3y = corner2y + horizontal * Math.sin(corner3polar);
+		corner4x = corner3x;
+		corner4y = corner1y - horizontal * Math.sin(corner3polar);
+
+
+
+
+		// part 2 - from fold to the right
+		p.beginShape();
+		p.vertex(corner1x, corner1y);
+		p.vertex(corner2x, corner2y);
+		corner3y = corner3y + flip / 2 * Math.sin(0.05)
+		corner4y = corner4y - flip / 2 * Math.sin(0.05)
+		p.vertex(corner3x - flip / 2 + 25, corner3y);
+		p.vertex(corner4x - flip / 2 + 25, corner4y);
+
+		p.endShape(p.CLOSE);
+
+
+		smalltie(1.2);
+
+		// part 1 of the tie - fron neck to fold
+
+		p.beginShape();
+		p.vertex(base1x, base1y);
+		p.vertex(corner1x, corner1y);
+		p.vertex(corner2x, corner2y);
+		p.vertex(base2x, base2y)
+		p.endShape(p.CLOSE);
+
+		//part 3 - overfold
+		p.beginShape();
+		p.vertex(corner3x - flip / 2 + 25, corner3y);
+		//3 degree diagonal
+		p.vertex((corner3x - flip / 2 + 25) - flip / 2 * Math.cos(-0.05), corner3y + flip / 2 * Math.sin(-0.05))
+		p.vertex(corner3x - flip, (corner3y + corner4y) / 2)
+		//3 degree diagonal
+		p.vertex((corner4x - flip / 2 + 25) - flip / 2 * Math.cos(-0.05), corner4y - flip / 2 * Math.sin(-0.05))
+		p.vertex(corner4x - flip / 2 + 25, corner4y);
+		p.endShape(p.CLOSE);
+
+		if (active) {
+			window.currenttietip = [corner3x - flip, (corner3y + corner4y) / 2];
+
+		}
+
+
+	}
+
+
+
+	function smalltie(angle) {
+		p.beginShape();
+		for (var i = 0; i < 5; i++) {
+			coord = smalltiecoords[i];
+			var polar = coord[1] * Math.PI / 180;
+			p.vertex(180 + coord[0] * Math.cos(angle + polar), 100 + coord[0] * Math.sin(angle + polar));
 		}
 		p.endShape(p.CLOSE);
 	}
