@@ -54,7 +54,7 @@ a{
 	color: black;
 	left: 41%;
 	right: 40%;
-	bottom: 5%;
+	bottom: 30%;
 	cursor: pointer;
 	font-family: 'Roboto Condensed', sans-serif;
 }
@@ -174,14 +174,21 @@ p
 	left: 0%;
 	background-color: black;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	width: 100%;
 	padding: 1.5em;
+	align-items: center;
 }
 
 .linky
 {
 	color: white;
+}
+
+a
+{
+	color: inherit;
+	text-decoration: underline;
 }
 
 /* @keyframes scrolldown{
