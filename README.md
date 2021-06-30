@@ -12,7 +12,7 @@ We started off with a Miro Board, collating the themes, designs, and content we 
 
 We then split the work such that Hanaan worked on the website, Juan worked on the Processing sketch and Fatema worked on editing the footage. As we moved towards wrapping up the project, we worked together on campus - sharing the remaining tasks while getting instant feedback from each other and eating gummy bears. 
 
-<img src="mkp.jpg" width="200"/>
+<img src="mkp.jpg" width="400"/>
 
 ### Reflection
 Overall, we are incredibly satisfied with our final result. We were able to implement the intended aesthetic with regard to the web layout and the video edits. We are also really pleased with the look and feel of our footage. 
