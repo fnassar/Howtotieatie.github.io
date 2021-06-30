@@ -138,6 +138,6 @@ function shirt()
     
     p.endShape(p.CLOSE);
     p.stroke(220);
-    line(200,100,200,400); 
+    p.line(200,100,200,400); 
 
 }

@@ -15,16 +15,16 @@ function assignValue() {
 }
 
 p.draw = function() {
-    background(220);
-    noStroke();
-    fill(255);
+    p.background(220);
+    p.noStroke();
+    p.fill(255);
     shirt();
-    stroke(180);
-    fill(255);
+    p.stroke(180);
+    p.fill(255);
     //objectives
     bigtie(340, false);
-    stroke(220)
-    fill(0);
+    p.stroke(220)
+    p.fill(0);
     //small tie is static, called between two layers of big tie
     
     bigtie(window.flip, true);
@@ -41,9 +41,9 @@ bigtiepart1 = [[12, -90], [227, -5], [250, 0], [227, 5], [12, 90]]
 smalltiecoords = [[12, -90], [156, -4.5], [170, 0], [156, 4.5], [12, 90]];
 
 p.mouseDragged = function() {
-    if(Math.abs(mouseX - window.currenttietip[0]) < 20 && Math.abs(mouseY - window.currenttietip[1]) < 20)
+    if(Math.abs(p.mouseX - window.currenttietip[0]) < 20 && Math.abs(p.mouseY - window.currenttietip[1]) < 20)
     {
-        window.flip = 364-mouseX;
+        window.flip = 364-p.mouseX;
     }
 }
 
@@ -85,38 +85,38 @@ function bigtie(flip, active) {
    
 
     // part 2 - from fold to the right
-    beginShape();
-    vertex(corner1x, corner1y);
-    vertex(corner2x, corner2y);
+    p.beginShape();
+    p.vertex(corner1x, corner1y);
+    p.vertex(corner2x, corner2y);
     corner3y = corner3y + flip/2*Math.sin(0.05)
     corner4y = corner4y - flip/2*Math.sin(0.05)
-    vertex(corner3x-flip/2+25, corner3y);
-    vertex(corner4x-flip/2+25, corner4y);
+    p.vertex(corner3x-flip/2+25, corner3y);
+    p.vertex(corner4x-flip/2+25, corner4y);
     
-    endShape(CLOSE);
+    p.endShape(CLOSE);
     
 
     smalltie(1.2);
 
     // part 1 of the tie - fron neck to fold
 
-    beginShape();
-    vertex(base1x,base1y);
-    vertex(corner1x,corner1y);
-    vertex(corner2x,corner2y);
-    vertex(base2x,base2y)
-    endShape(CLOSE);
+    p.beginShape();
+    p.vertex(base1x,base1y);
+    p.vertex(corner1x,corner1y);
+    p.vertex(corner2x,corner2y);
+    p.vertex(base2x,base2y)
+    p.endShape(CLOSE);
 
     //part 3 - overfold
-    beginShape();
-    vertex(corner3x-flip/2+25, corner3y);
+    p.beginShape();
+    p.vertex(corner3x-flip/2+25, corner3y);
     //3 degree diagonal
-    vertex((corner3x-flip/2+25)-flip/2*Math.cos(-0.05), corner3y+flip/2*Math.sin(-0.05))
-    vertex(corner3x-flip, (corner3y+corner4y)/2)
+    p.vertex((corner3x-flip/2+25)-flip/2*Math.cos(-0.05), corner3y+flip/2*Math.sin(-0.05))
+    p.vertex(corner3x-flip, (corner3y+corner4y)/2)
     //3 degree diagonal
-    vertex((corner4x-flip/2+25)-flip/2*Math.cos(-0.05), corner4y-flip/2*Math.sin(-0.05))
-    vertex(corner4x-flip/2+25, corner4y);
-    endShape(CLOSE);
+    p.vertex((corner4x-flip/2+25)-flip/2*Math.cos(-0.05), corner4y-flip/2*Math.sin(-0.05))
+    p.vertex(corner4x-flip/2+25, corner4y);
+    p.endShape(CLOSE);
 
     if(active)
     {
@@ -131,37 +131,37 @@ function bigtie(flip, active) {
 
 function smalltie(angle)
 {
-    beginShape();
+    p.beginShape();
     for(var i = 0; i < 5; i++)
     {
         coord = smalltiecoords[i];
         var polar = coord[1]*Math.PI/180;
-        vertex(180+coord[0]*Math.cos(angle+polar),100+coord[0]*Math.sin(angle+polar));
+        p.vertex(180+coord[0]*Math.cos(angle+polar),100+coord[0]*Math.sin(angle+polar));
     }
-    endShape(CLOSE);
+    p.endShape(CLOSE);
 }
 function shirt()
 {
-    beginShape();
-    vertex(0,100);
-    vertex(162,100);
-    vertex(162,70);
-    vertex(190,70);
-    vertex(190,100);
-    vertex(210,100);
-    vertex(210,70);
-    vertex(242,70);
-    vertex(242,100);
-    vertex(400,100);
-    vertex(400,190);
-    vertex(300,190);
-    vertex(300,400);
-    vertex(100,400);
-    vertex(100,190);
-    vertex(0,190);
+    p.beginShape();
+    p.vertex(0,100);
+    p.vertex(162,100);
+    p.vertex(162,70);
+    p.vertex(190,70);
+    p.vertex(190,100);
+    p.vertex(210,100);
+    p.vertex(210,70);
+    p.vertex(242,70);
+    p.vertex(242,100);
+    p.vertex(400,100);
+    p.vertex(400,190);
+    p.vertex(300,190);
+    p.vertex(300,400);
+    p.vertex(100,400);
+    p.vertex(100,190);
+    p.vertex(0,190);
     
-    endShape(CLOSE);
-    stroke(220);
-    line(200,100,200,400); 
+    p.endShape(CLOSE);
+    p.stroke(220);
+    p.line(200,100,200,400); 
 
 }
