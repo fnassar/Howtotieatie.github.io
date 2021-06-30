@@ -1,7 +1,6 @@
 
-function setup() {
-    var canvas = createCanvas(400, 400);
-    canvas.parent("tie3");
+p.setup = function() {
+    p.createCanvas(400, 400);
     assignValue();
 }
 
@@ -15,18 +14,18 @@ function assignValue() {
     assignValue = noop;
 }
 
-function draw() {
+p.draw = function() {
     yoffset=40;
-    background(220);
-    noStroke();
-    fill(255);
+    p.background(220);
+    p.noStroke();
+    p.fill(255);
     shirt();
-    stroke(180);
-    fill(255);
+    p.stroke(180);
+    p.fill(255);
     //objectives
     bigtie(140, false);
-    stroke(220)
-    fill(0);
+    p.stroke(220)
+    p.fill(0);
     //small tie is static, called between two layers of big tie
     
     bigtie(window.vertical, true);
@@ -43,12 +42,11 @@ bigtiecoords = [[12, -90], [227, -5], [250, 0], [227, 5], [12, 90]];
 bigtiepart1 = [[12, -90], [227, -5], [250, 0], [227, 5], [12, 90]]
 smalltiecoords = [[12, -90], [156, -4.5], [170, 0], [156, 4.5], [12, 90]];
 
-
-function mouseDragged() {
-    if(Math.abs(mouseX - window.currenttietip[0]) < 20 && Math.abs(mouseY - window.currenttietip[1]) < 20)
+p.mouseDragged = function() {
+    if(Math.abs(p.mouseX - window.currenttietip[0]) < 20 && Math.abs(p.mouseY - window.currenttietip[1]) < 20)
     {
         //another equation reached by a regrettable amount of hard trigonometry
-        window.vertical = (mouseY-125.7-yoffset)/-0.984;
+        window.vertical = (p.mouseY-125.7-yoffset)/-0.984;
     }
 }
 
@@ -112,51 +110,51 @@ function bigtie(vertical, active) {
    
 
     //part 4 - fold to above
-    beginShape();
+    p.beginShape();
     //connection down
-    vertex(corner5x, corner5y+yoffset);
+    p.vertex(corner5x, corner5y+yoffset);
 
     //tip itself
-    vertex(corner7x, corner7y+yoffset);
-    vertex(uppertipx, uppertipy+yoffset);
-    vertex(corner9x, corner9y+yoffset);
+    p.vertex(corner7x, corner7y+yoffset);
+    p.vertex(uppertipx, uppertipy+yoffset);
+    p.vertex(corner9x, corner9y+yoffset);
 
     //todo corner6
-    vertex(corner6x,corner6y+yoffset);
+    p.vertex(corner6x,corner6y+yoffset);
 
-    endShape(CLOSE);
+    endShape(p.CLOSE);
     
     // part 2 - from fold to the right
-    beginShape();
-    vertex(corner1x, corner1y+yoffset);
-    vertex(corner2x, corner2y+yoffset);
+    p.beginShape();
+    p.vertex(corner1x, corner1y+yoffset);
+    p.vertex(corner2x, corner2y+yoffset);
     
-    vertex(corner3x-flip/2+25, corner3y+yoffset);
-    vertex(corner4x-flip/2+25, corner4y+yoffset);
+    p.vertex(corner3x-flip/2+25, corner3y+yoffset);
+    p.vertex(corner4x-flip/2+25, corner4y+yoffset);
     
-    endShape(CLOSE);
+    p.endShape(p.CLOSE);
     
 
     smalltie(1.2);
 
     // part 1 of the tie - fron neck to fold
 
-    beginShape();
-    vertex(base1x,base1y+yoffset);
-    vertex(corner1x,corner1y+yoffset);
-    vertex(corner2x,corner2y+yoffset);
-    vertex(base2x,base2y+yoffset)
-    endShape(CLOSE);
+    p.beginShape();
+    p.vertex(base1x,base1y+yoffset);
+    p.vertex(corner1x,corner1y+yoffset);
+    p.vertex(corner2x,corner2y+yoffset);
+    p.vertex(base2x,base2y+yoffset)
+    p.endShape(p.CLOSE);
 
     //part 3 - overfold
-    beginShape();
-    vertex(corner3x-flip/2+25, corner3y+yoffset);
+    p.beginShape();
+    p.vertex(corner3x-flip/2+25, corner3y+yoffset);
     //3 degree diagonal
-    vertex(corner5x, corner5y+yoffset)
+    p.vertex(corner5x, corner5y+yoffset)
     //3 degree diagonal
-    vertex(corner6x, corner6y+yoffset)
-    vertex(corner4x-flip/2+25, corner4y+yoffset);
-    endShape(CLOSE);
+    p.vertex(corner6x, corner6y+yoffset)
+    p.vertex(corner4x-flip/2+25, corner4y+yoffset);
+    p.endShape(p.CLOSE);
 
     if(active)
     {
@@ -171,37 +169,37 @@ function bigtie(vertical, active) {
 
 function smalltie(angle)
 {
-    beginShape();
+    p.beginShape();
     for(var i = 0; i < 5; i++)
     {
         coord = smalltiecoords[i];
         var polar = coord[1]*Math.PI/180;
-        vertex(180+coord[0]*Math.cos(angle+polar),yoffset+100+coord[0]*Math.sin(angle+polar));
+        p.vertex(180+coord[0]*Math.cos(angle+polar),yoffset+100+coord[0]*Math.sin(angle+polar));
     }
-    endShape(CLOSE);
+    p.endShape(p.CLOSE);
 }
 function shirt()
 {
-    beginShape();
-    vertex(0,yoffset+100);
-    vertex(162,yoffset+100);
-    vertex(162,yoffset+70);
-    vertex(190,yoffset+70);
-    vertex(190,yoffset+100);
-    vertex(210,yoffset+100);
-    vertex(210,yoffset+70);
-    vertex(242,yoffset+70);
-    vertex(242,yoffset+100);
-    vertex(400,yoffset+100);
-    vertex(400,yoffset+190);
-    vertex(300,yoffset+190);
-    vertex(300,yoffset+400);
-    vertex(100,yoffset+400);
-    vertex(100,yoffset+190);
-    vertex(0,yoffset+190);
+    p.beginShape();
+    p.vertex(0,yoffset+100);
+    p.vertex(162,yoffset+100);
+    p.vertex(162,yoffset+70);
+    p.vertex(190,yoffset+70);
+    p.vertex(190,yoffset+100);
+    p.vertex(210,yoffset+100);
+    p.vertex(210,yoffset+70);
+    p.vertex(242,yoffset+70);
+    p.vertex(242,yoffset+100);
+    p.vertex(400,yoffset+100);
+    p.vertex(400,yoffset+190);
+    p.vertex(300,yoffset+190);
+    p.vertex(300,yoffset+400);
+    p.vertex(100,yoffset+400);
+    p.vertex(100,yoffset+190);
+    p.vertex(0,yoffset+190);
     
-    endShape(CLOSE);
-    stroke(220);
-    line(200,100,200,400); 
+    p.endShape(p.CLOSE);
+    p.stroke(220);
+    p.line(200,100,200,400); 
 
 }
