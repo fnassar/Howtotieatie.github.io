@@ -383,6 +383,8 @@ function sketch3(p) {
 		//small tie is static, called between two layers of big tie
 
 		bigtie(window.horizontal, true);
+		p.fill(255,0,0);
+		p.ellipse(window.currenttietip[0],window.currenttietip[1], 10,10);
 		//check if win
 		if (Math.abs(window.horizontal - 190) < 10) {
 			var toDelete = document.getElementById("div3");
@@ -525,6 +527,8 @@ function sketch4(p) {
 		//small tie is static, called between two layers of big tie
 
 		bigtie(window.flip, true);
+		p.fill(255,0,0);
+		p.ellipse(window.currenttietip[0],window.currenttietip[1], 10,10);
 		//check if win
 		if (Math.abs(window.flip - 340) < 5) {
 			var toDelete = document.getElementById("div4");
@@ -693,6 +697,8 @@ function sketch5(p) {
 		//small tie is static, called between two layers of big tie
 
 		bigtie(window.vertical, true);
+		p.fill(255,0,0);
+		p.ellipse(window.currenttietip[0],window.currenttietip[1], 10,10);
 		//check if win
 		if (Math.abs(window.vertical - 140) < 5) {
 			var toDelete = document.getElementById("div5");
@@ -894,8 +900,10 @@ function sketch6(p) {
 		p.stroke(220)
 		p.fill(0);
 		//small tie is static, called between two layers of big tie
-
+		
 		bigtie(window.vertical, true);
+		p.fill(255,0,0);
+		p.ellipse(window.currenttietip[0],window.currenttietip[1], 10,10);
 		//check if win
 		if (Math.abs(window.vertical - 300) < 5) {
 			var toDelete = document.getElementById("div6");
