@@ -1033,4 +1033,14 @@ function sketch6(p) {
 		p.line(200, 100, 200, 400);
 
 	}
+
+	
+}
+function scrolltop()
+{
+	window.scrollTo({
+		top: 0,
+		left: 0,
+		behavior: 'smooth'
+	  });
 }
