@@ -1,6 +1,7 @@
 ## Documentation
 
 ### How to Tie a Tie
+https://fnassar.github.io/Howtotieatie.github.io/
 
 ### Description
 'How to Tie a Tie' is a three-part video series that explores toxic masculinity through the metaphor of tying a tie. The actual procedure of tying the tie is interspersed with a narration/visuals that explore various aspects of supposed "manliness" and its associated social expectations. After each step that explains how to tie the tie, a screen appears prompting the user to repeat the motion that was last shown. 
